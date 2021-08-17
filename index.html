@@ -3,41 +3,48 @@
 <head>
 <title>Get Pre-approved!</title>
 </head>
+
 <body>
-	<!-- bootstrap -->
+	<!-- Include Bootstrap for styling-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	
-	<!-- react -->
+	<!-- Include React -->
 	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
 	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
 	
-	
-	<h1 class="mb-3">Pre-approval form</h1>
-	<p>Fill out the fields below to find out if you qualify</p>
-
-	<div id="investmentAmount_component"></div>
-
-	<script src="js/investmentAmount.js"></script>
-	
-	<div class="">
-		<form class="col-lg-6 offset-lg-3 ">
-		<div class="form-group row">
-			<label class="col-sm-3 col-form-label" for="investmentAmount">Investment Amount:</label>
-			<div class="col-sm-9">
-				<input type="text" class="form-control" id="investmentAmount" placeholder="Ex: 25000" required>
-			</div>
-		</div>
-		<div class="form-group row">
-			<label class="col-sm-3 col-form-label" for="investmentType">Investment Type:</label>
-			<div class="col-sm-9">
-				<input type="text" class="form-control" id="investmentType" placeholder="Investment Type" required>
-			</div>
-		</div>
+	<!-- include css --> 
+	<link rel="stylesheet" href="css/index.css"> 
+	<div class="bg"> 
 		
-		</form>
-	</div>
+		<!-- <h3 class="mb-3 text-center">Pre-approval form</h1>  !-->
+		<h3 class="text-center">Pre-approval form</h3>
 
+		<!--<div id="investmentAmount_component"></div>
+		<script src="js/investmentAmount.js"></script>-->
+		
+		<div>
+			<div class="card bg-dark border-primary mb-3 w-50 p-3">
+				<div class="card-title">All fields are required</div>
+				<div class="card-body w-5">
+					<form class="col-lg-6 offset-lg-3 ">
+						<div class="form-group row">
+							<label class="col-sm-3 col-form-label" for="investmentAmount">Investment Amount:</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="investmentAmount" placeholder="Ex: 25000" required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-3 col-form-label" for="investmentType">Investment Type:</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="investmentType" placeholder="Investment Type" required>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
