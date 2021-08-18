@@ -16,35 +16,51 @@
 	
 	<!-- include css --> 
 	<link rel="stylesheet" href="css/index.css"> 
+	
+	<!-- <h3 class="mb-3 text-center">Pre-approval form</h1>  !-->
+
+	<!--<div id="investmentAmount_component"></div>
+	<script src="js/investmentAmount.js"></script>-->
+
 	<div class="content"> 
-		<div class="bg-dark pt-1 float-right">
-		<!-- <h3 class="mb-3 text-center">Pre-approval form</h1>  !-->
-		<h3 class="text-center">Pre-approval form</h3>
-
-		<!--<div id="investmentAmount_component"></div>
-		<script src="js/investmentAmount.js"></script>-->
-		
-
-			<div class="card main-card bg-dark border-primary w-50 col-lg-6 shadow-lg rounded float-right">
-				<h5 class="card-title">All fields are required</h5>
-				<div class="card-body">
-					<form class="col-lg-8 offset-lg-3 ">
-						<div class="form-group row">
-							<label class="col-sm-3 col-form-label" for="investmentAmount">Investment Amount:</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="investmentAmount" placeholder="Ex: 25000" required>
+		<nav class="site-header sticky-top py-1 navbar navbar-inverse text-center">
+		  <div class="container d-flex flex-column flex-md-row justify-content-between bg-light">
+			<img src="images/cash-flow.png">
+			<a class="py-2 d-none d-md-inline-block" href="#">Link 1</a>
+			<a class="py-2 d-none d-md-inline-block" href="#">Link 2</a>
+			<a class="py-2 d-none d-md-inline-block" href="#">Link 3</a>
+			<a class="py-2 d-none d-md-inline-block" href="#">Link 4</a>
+			<a class="py-2 d-none d-md-inline-block" href="#">Link 5</a>
+		  </div>
+		</nav>
+		<table class="wide_table">
+			<tbody>
+				<tr>
+					<td></td>
+					<td>
+						<div class="card main-card border-primary shadow-lg rounded float-right">
+							<h5 class="card-title">All fields are required</h5>
+							<div class="card-body">
+								<form class="col-lg-8 offset-lg-3 ">
+									<div class="form-group row">
+										<label class="col-sm-3 col-form-label" for="investmentAmount">Investment Amount:</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="investmentAmount" placeholder="Ex: 25000" required>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-3 col-form-label" for="investmentType">Investment Type:</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="investmentType" placeholder="Investment Type" required>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
-						<div class="form-group row">
-							<label class="col-sm-3 col-form-label" for="investmentType">Investment Type:</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="investmentType" placeholder="Investment Type" required>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>
