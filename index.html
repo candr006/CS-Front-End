@@ -24,21 +24,14 @@
 
 	<div class="content"> 
 		<nav class="site-header sticky-top py-1 navbar navbar-inverse text-center">
-		  <div class="container d-flex flex-column flex-md-row justify-content-between bg-light">
-			<img src="images/cash-flow.png">
-			<a class="py-2 d-none d-md-inline-block" href="#">Link 1</a>
-			<a class="py-2 d-none d-md-inline-block" href="#">Link 2</a>
-			<a class="py-2 d-none d-md-inline-block" href="#">Link 3</a>
-			<a class="py-2 d-none d-md-inline-block" href="#">Link 4</a>
-			<a class="py-2 d-none d-md-inline-block" href="#">Link 5</a>
-		  </div>
+
 		</nav>
 		<table class="wide_table">
 			<tbody>
 				<tr>
-					<td></td>
+					<td class="tdwidth1 m-e-4"><p class="largetext">Get Pre-approved now!</p></td>
 					<td>
-						<div class="card main-card border-primary shadow-lg rounded float-right">
+						<div class="card main-card border-primary shadow-lg rounded float-right w-30">
 							<h5 class="card-title">All fields are required</h5>
 							<div class="card-body">
 								<form class="col-lg-8 offset-lg-3 ">
@@ -52,6 +45,24 @@
 										<label class="col-sm-3 col-form-label" for="investmentType">Investment Type:</label>
 										<div class="col-sm-9">
 											<input type="text" class="form-control" id="investmentType" placeholder="Investment Type" required>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-3 col-form-label" for="totalNetWorth">Total Net Worth:</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="totalNetWorth" placeholder="Ex: 1000000" required>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-3 col-form-label" for="estimatedYearlyIncome">User Estimated Yearly Income:</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="estimatedYearlyIncome" placeholder="Ex: 1000000" required>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-3 col-form-label" for="estimatedCreditScore">User Estimated Credit Score:</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="estimatedCreditScore" placeholder="Ex: 1000000" required>
 										</div>
 									</div>
 								</form>
