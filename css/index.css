@@ -1,5 +1,5 @@
 body {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url("../images/cash_bg.jpg");
+	background-image: linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, 0.75)),url("../images/cash_bg.jpg");
 	transform: skewY(-11deg);
 	height: 100%;
 	width: 100%;
@@ -47,6 +47,7 @@ body {
 }
 
 .wide_table{
+	margin-top:50px;
 	min-width:100%;
 }
 
