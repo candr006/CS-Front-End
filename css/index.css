@@ -37,6 +37,8 @@ body {
     border-radius: .25rem;
 	margin-right:50px;
 	margin-left:50px;
+	padding-top:25px;
+	padding-left:15px;
 }
 
 .card-header, .card-title {
@@ -95,4 +97,8 @@ a{
 	font-size:12px;
 	color: white;
 	margin-left:30px;
+}
+
+.required_label:after{
+	content:"*";color:red;
 }
