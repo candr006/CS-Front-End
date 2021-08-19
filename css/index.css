@@ -102,3 +102,7 @@ a{
 .required_label:after{
 	content:"*";color:red;
 }
+
+.row{
+	margin-bottom: 25px;
+}
