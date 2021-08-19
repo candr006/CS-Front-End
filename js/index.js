@@ -1,16 +1,21 @@
 'use strict';
 
 //const e = React.createElement;
-var React = require('react');
-var ReactDOM = require('react-dom');
 
+	
 class preApprovalForm extends React.Component {
+	
+  constructor(props) {
+	  console.log('HERE1');
+		super(props);
+	}
 
   render() {
    // if (this.state.liked) {
    //   return 'Hello world.';
   //  }
-    return ('<div>Hello World!</div>');
+  console.log('HERE2');
+    return (<Form />);
 		//index form
 			
 		/*<form class="col-lg-8 offset-lg-3 ">
@@ -55,12 +60,7 @@ class preApprovalForm extends React.Component {
   }
 }
 
-var HelloWorld = React.createClass({
-  render: function () {
-    return (Hello ReactJS World!);
-  }
-});
 
 //const domContainer = document.querySelector('#form_card_body');
 /*ReactDOM.render((preApprovalForm), domContainer);*/
-ReactDOM.render(<HelloWorld />, document.querySelector('#form_card_body'));
+ReactDOM.render(<preApprovalForm />, document.querySelector('#form_card_body'));
