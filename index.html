@@ -96,6 +96,34 @@ class PreApprovalForm extends React.Component {
 		}
 		
 		
+		//validate Total Net Worth field
+		if(!Number(this.state.total_net_worth)){
+			this.state.err_general=1;
+			this.setState({["err_total_net_worth"]:"This field can only contain numbers"});
+		}else{
+			this.setState({["err_total_net_worth"]:""});
+		}
+		
+		//validate User Estimated Yearly Income
+		if(!Number(this.state.estimated_yearly_income)){
+			this.state.err_general=1;
+			this.setState({["err_estimated_yearly_income"]:"This field can only contain numbers"});
+		}else{
+			this.setState({["err_estimated_yearly_income"]:""});
+		}
+		
+		//Validate Credit Score
+		if(!Number(this.state.estimated_credit_score)){
+			this.state.err_general=1;
+			this.setState({["err_estimated_credit_score"]:"This field can only contain numbers"});
+		}else{
+			if(this.state.estimated_credit_score<600 || this.state.estimated_credit_score>800){
+				this.state.err_general=1;
+				this.setState({["err_estimated_credit_score"]:"Enter a credit score between 600 and 800"});
+			}else{
+				this.setState({["err_estimated_credit_score"]:""});
+			}
+		}
 		
 		
 	  }
