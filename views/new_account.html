@@ -65,9 +65,21 @@ class NewAccountForm extends React.Component {
 		this.state.err_general=0;
 		
 		//Create regex for alphanumeric tests
-		var alphanumeric_match= /^[0-9a-zA-Z]+$/;
+		var email_match= /^[0-9a-zA-Z._]+@[0-9a-zA-Z]+.com/;
 		
-		//validate Investment Amount field
+		//validate Username field
+		//console.log("Email match: "+email_match.test(this.state.email));
+		if(!email_match.test(this.state.email)){
+			this.state.err_general=1;
+			this.setState({["err_email"]:"Enter a valid email address"});
+			//console.log("VS: "+this.state.email);
+		}else{
+			this.setState({["err_email"]:""});
+		}
+		
+		
+		var password_match= /^[0-9a-zA-Z]+@[0-9a-zA-Z]+[.com]$/;
+		
 		if(!Number(this.state.investment_amount)){
 			this.state.err_general=1;
 			this.setState({["err_investment_amount"]:"This field can only contain numbers"});
@@ -75,44 +87,7 @@ class NewAccountForm extends React.Component {
 			this.setState({["err_investment_amount"]:""});
 		}
 		
-		//validate Investment Type field
-		if(!alphanumeric_match.test(this.state.investment_type)){
-			this.state.err_general=1;
-			this.setState({["err_investment_type"]:"This field can only contain alphanumeric characters (A-Z, 0-9)"});
-			console.log("VS: "+this.state.investment_type);
-		}else{
-			this.setState({["err_investment_type"]:""});
-		}
-		
-		
-		//validate Total Net Worth field
-		if(!Number(this.state.total_net_worth)){
-			this.state.err_general=1;
-			this.setState({["err_total_net_worth"]:"This field can only contain numbers"});
-		}else{
-			this.setState({["err_total_net_worth"]:""});
-		}
-		
-		//validate User Estimated Yearly Income
-		if(!Number(this.state.estimated_yearly_income)){
-			this.state.err_general=1;
-			this.setState({["err_estimated_yearly_income"]:"This field can only contain numbers"});
-		}else{
-			this.setState({["err_estimated_yearly_income"]:""});
-		}
-		
-		//Validate Credit Score
-		if(!Number(this.state.estimated_credit_score)){
-			this.state.err_general=1;
-			this.setState({["err_estimated_credit_score"]:"This field can only contain numbers"});
-		}else{
-			if(this.state.estimated_credit_score<600 || this.state.estimated_credit_score>800){
-				this.state.err_general=1;
-				this.setState({["err_estimated_credit_score"]:"Enter a valid credit score below 800"});
-			}else{
-				this.setState({["err_estimated_credit_score"]:""});
-			}
-		}
+
 		
 		
 	  }
@@ -133,14 +108,14 @@ class NewAccountForm extends React.Component {
 				<div class="form-group row">
 					<label class="col-sm-6 col-form-label required_label" for="password1">Password </label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="password1" name="password1" onChange={this.handleChange} placeholder="" required/>
+						<input type="text" class="form-control" id="password1" name="password1" onChange={this.handleChange} placeholder="Must include at least 8 characters and one number or special character" required/>
 						<div class="text-danger"><small>{this.state.err_password1}</small></div>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-6 col-form-label required_label" for="password2">Re-Enter Password </label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="password2" name="password2" onChange={this.handleChange} placeholder="" required/>
+						<input type="text" class="form-control" id="password2" name="password2" onChange={this.handleChange} placeholder="This value must match the password field" required/>
 						<div class="text-danger"><small>{this.state.err_password2}</small></div>
 					</div>
 				</div>
