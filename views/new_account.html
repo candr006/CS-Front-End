@@ -65,26 +65,32 @@ class NewAccountForm extends React.Component {
 		this.state.err_general=0;
 		
 		//Create regex for alphanumeric tests
-		var email_match= /^[0-9a-zA-Z._]+@[0-9a-zA-Z]+.com/;
+		var email_match= /^[0-9a-zA-Z._]+@[0-9a-zA-Z]+.[0-9a-zA-Z]+/;
 		
 		//validate Username field
-		//console.log("Email match: "+email_match.test(this.state.email));
+		console.log("Email match: "+email_match.test(this.state.email));
 		if(!email_match.test(this.state.email)){
 			this.state.err_general=1;
 			this.setState({["err_email"]:"Enter a valid email address"});
-			//console.log("VS: "+this.state.email);
+			console.log("VS: "+this.state.email);
 		}else{
 			this.setState({["err_email"]:""});
 		}
 		
 		
-		var password_match= /^[0-9a-zA-Z]+@[0-9a-zA-Z]+[.com]$/;
+		var atleast1num= /\d/
+		var atleast1specialchar=/[~!@#$%^&*]+/;
 		
-		if(!Number(this.state.investment_amount)){
+		if(!(this.state.password1.length>7)){
 			this.state.err_general=1;
-			this.setState({["err_investment_amount"]:"This field can only contain numbers"});
+			this.setState({["err_password1"]:"Your password must be at least 8 characters long"});
 		}else{
-			this.setState({["err_investment_amount"]:""});
+			if(!(atleast1num.test(this.state.password1)) && !(atleast1specialchar.test(this.state.password1))){
+				this.state.err_general=1;
+				this.setState({["err_password1"]:"Your password must contain at least 1 number OR special character: ~!@#$%^&*"});
+			}else{
+				this.setState({["err_password1"]:""});
+			}
 		}
 		
 
@@ -108,7 +114,7 @@ class NewAccountForm extends React.Component {
 				<div class="form-group row">
 					<label class="col-sm-6 col-form-label required_label" for="password1">Password </label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="password1" name="password1" onChange={this.handleChange} placeholder="Must include at least 8 characters and one number or special character" required/>
+						<input type="text" class="form-control" id="password1" name="password1" onChange={this.handleChange} placeholder="Must include at least 8 characters and one number or special character: ~!@#$%^&*" required/>
 						<div class="text-danger"><small>{this.state.err_password1}</small></div>
 					</div>
 				</div>
