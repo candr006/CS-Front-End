@@ -23,9 +23,6 @@
 	
 	<!-- <h3 class="mb-3 text-center">Pre-approval form</h1>  !-->
 
-	<!--<div id="investmentAmount_component"></div>
-	<script src="js/investmentAmount.js"></script> -->
-
 	<div class="content"> 
 		<nav class="site-header sticky-top py-1 navbar navbar-inverse text-center">
 			<h3 class="largetext">Create New Account</h3>
@@ -127,38 +124,24 @@ class NewAccountForm extends React.Component {
 					): null }
 					
 				<div class="form-group row">
-					<label class="col-sm-6 col-form-label required_label" for="investmentAmount">Investment Amount </label>
+					<label class="col-sm-6 col-form-label required_label" for="email">Username </label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control is-invalid" id="investmentAmount" name="investment_amount" onChange={this.handleChange} placeholder="Ex: 25000" required />
-						<div class="text-danger"><small>{this.state.err_investment_amount}</small></div>
+						<input type="text" class="form-control" id="email" name="email" onChange={this.handleChange} placeholder="Enter a valid email address" required />
+						<div class="text-danger"><small>{this.state.err_email}</small></div>
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-6 col-form-label required_label" for="investmentType">Investment Type </label>
+					<label class="col-sm-6 col-form-label required_label" for="password1">Password </label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="investmentType" name="investment_type" onChange={this.handleChange} placeholder="Investment Type" required/>
-						<div class="text-danger"><small>{this.state.err_investment_type}</small></div>
+						<input type="text" class="form-control" id="password1" name="password1" onChange={this.handleChange} placeholder="" required/>
+						<div class="text-danger"><small>{this.state.err_password1}</small></div>
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-6 col-form-label required_label" for="totalNetWorth">Total Net Worth </label>
+					<label class="col-sm-6 col-form-label required_label" for="password2">Re-Enter Password </label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="totalNetWorth" name="total_net_worth" onChange={this.handleChange} placeholder="Ex: 1000000" required />
-						<div class="text-danger"><small>{this.state.err_total_net_worth}</small></div>
-					</div>
-				</div>
-				<div class="form-group row">
-					<label class="col-sm-6 col-form-label required_label" for="estimatedYearlyIncome">User Estimated Yearly Income </label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" id="estimatedYearlyIncome" name="estimated_yearly_income" onChange={this.handleChange} placeholder="Ex: 1000000" required />
-						<div class="text-danger"><small>{this.state.err_estimated_yearly_income}</small></div>
-					</div>
-				</div>
-				<div class="form-group row">
-					<label class="col-sm-6 col-form-label required_label" for="estimatedCreditScore">User Estimated Credit Score </label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" id="estimatedCreditScore" name="estimated_credit_score" onChange={this.handleChange} placeholder="Ex: 1000000" required />
-						<div class="text-danger"><small>{this.state.err_estimated_credit_score}</small></div>
+						<input type="text" class="form-control" id="password2" name="password2" onChange={this.handleChange} placeholder="" required/>
+						<div class="text-danger"><small>{this.state.err_password2}</small></div>
 					</div>
 				</div>
 				<div class="form-group row">
