@@ -5,17 +5,15 @@
 	
 class preApprovalForm extends React.Component {
 	
-  constructor(props) {
-	  console.log('HERE1');
-		super(props);
+  constructor() {
+		super();
 	}
 
   render() {
-   // if (this.state.liked) {
-   //   return 'Hello world.';
-  //  }
-  console.log('HERE2');
-    return (<Form />);
+
+  	 var html="<p>Hello World!</p>";
+
+    return ({html});
 		//index form
 			
 		/*<form class="col-lg-8 offset-lg-3 ">
@@ -63,4 +61,4 @@ class preApprovalForm extends React.Component {
 
 //const domContainer = document.querySelector('#form_card_body');
 /*ReactDOM.render((preApprovalForm), domContainer);*/
-ReactDOM.render(<preApprovalForm />, document.querySelector('#form_card_body'));
+ReactDOM.render(new preApprovalForm(), document.querySelector('#form_card_body'));
