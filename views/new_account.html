@@ -78,8 +78,12 @@ class NewAccountForm extends React.Component {
 		}
 		
 		
+		
+		
+		//Validate password fields
 		var atleast1num= /\d/
 		var atleast1specialchar=/[~!@#$%^&*]+/;
+		
 		
 		if(!(this.state.password1.length>7)){
 			this.state.err_general=1;
@@ -93,6 +97,15 @@ class NewAccountForm extends React.Component {
 			}
 		}
 		
+		
+		if(!(this.state.password1==this.state.password2)){
+			this.state.err_general=1;
+			this.setState({["err_password2"]:"Password fields must match"});
+			this.setState({["err_password1"]:"Password fields must match"});
+		}else{
+			this.setState({["err_password1"]:""});
+			this.setState({["err_password2"]:""});
+		}
 
 		
 		
