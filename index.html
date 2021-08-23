@@ -65,45 +65,64 @@ class PreApprovalForm extends React.Component {
 		  err_estimated_credit_score:''
 		};
 	  }
+	  handleChange= (event) =>{
+		let ename = event.target.name;
+		let evalue = event.target.value;
+		this.setState({[ename]: evalue});
+
+		console.log("HC: "+this.state.investment_amount);
+	  }
+	  
+	  validateSubmit= (event) => {
+		
+		event.preventDefault();
+		if(!Number(this.state.investment_amount)){
+			this.state.err_general=1;
+			this.setState({["err_investment_amount"]:"This field can only contain numbers"});
+			console.log("VS: "+this.state.investment_amount);
+		}
+		
+		
+	  }
 	  render() {
 	  	return(
-			<form onSubmit={this.handleSubmit} class="col-lg-8 offset-lg-3 ">
+			<form onSubmit={this.validateSubmit} class="col-lg-8 offset-lg-3 ">
 				{this.state.err_general > 0 ? (
-					<div class="alert alert-danger" role="alert">Please correct errors below</div>
+					<div class="alert alert-danger" role="alert">Please correct the errors below</div>
 					): null }
 					
 				<div class="form-group row">
 					<label class="col-sm-6 col-form-label required_label" for="investmentAmount">Investment Amount </label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control is-invalid" id="investmentAmount" placeholder="Ex: 25000" required />
+						<input type="text" class="form-control is-invalid" id="investmentAmount" name="investment_amount" onChange={this.handleChange} placeholder="Ex: 25000" required />
 						<div class="text-danger"><small>{this.state.err_investment_amount}</small></div>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-6 col-form-label required_label" for="investmentType">Investment Type </label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="investmentType" placeholder="Investment Type" required/>
+						<input type="text" class="form-control" id="investmentType" name="investment_type" onChange={this.handleChange} placeholder="Investment Type" required/>
 						<div class="text-danger"><small>{this.state.err_investment_type}</small></div>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-6 col-form-label required_label" for="totalNetWorth">Total Net Worth </label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="totalNetWorth" placeholder="Ex: 1000000" required />
+						<input type="text" class="form-control" id="totalNetWorth" name="total_net_worth" onChange={this.handleChange} placeholder="Ex: 1000000" required />
 						<div class="text-danger"><small>{this.state.err_total_net_worth}</small></div>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-6 col-form-label required_label" for="estimatedYearlyIncome">User Estimated Yearly Income </label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="estimatedYearlyIncome" placeholder="Ex: 1000000" required />
+						<input type="text" class="form-control" id="estimatedYearlyIncome" name="estimated_yearly_income" onChange={this.handleChange} placeholder="Ex: 1000000" required />
 						<div class="text-danger"><small>{this.state.err_estimated_yearly_income}</small></div>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-6 col-form-label required_label" for="estimatedCreditScore">User Estimated Credit Score </label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="estimatedCreditScore" placeholder="Ex: 1000000" required />
+						<input type="text" class="form-control" id="estimatedCreditScore" name="estimated_credit_score" onChange={this.handleChange} placeholder="Ex: 1000000" required />
 						<div class="text-danger"><small>{this.state.err_estimated_credit_score}</small></div>
 					</div>
 				</div>
