@@ -69,18 +69,33 @@ class PreApprovalForm extends React.Component {
 		let ename = event.target.name;
 		let evalue = event.target.value;
 		this.setState({[ename]: evalue});
-
-		console.log("HC: "+this.state.investment_amount);
 	  }
 	  
-	  validateSubmit= (event) => {
-		
+	  validateSubmit= (event) => {	
 		event.preventDefault();
+		this.state.err_general=0;
+		
+		//Create regex for alphanumeric tests
+		var alphanumeric_match= /^[0-9a-zA-Z]+$/;
+		
+		//validate Investment Amount field
 		if(!Number(this.state.investment_amount)){
 			this.state.err_general=1;
 			this.setState({["err_investment_amount"]:"This field can only contain numbers"});
-			console.log("VS: "+this.state.investment_amount);
+		}else{
+			this.setState({["err_investment_amount"]:""});
 		}
+		
+		//validate Investment Type field
+		if(!alphanumeric_match.test(this.state.investment_type)){
+			this.state.err_general=1;
+			this.setState({["err_investment_type"]:"This field can only contain alphanumeric characters (A-Z, 0-9)"});
+			console.log("VS: "+this.state.investment_type);
+		}else{
+			this.setState({["err_investment_type"]:""});
+		}
+		
+		
 		
 		
 	  }
