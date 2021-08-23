@@ -57,7 +57,8 @@ class PreApprovalForm extends React.Component {
 		  total_net_worth:null,
 		  estimated_yearly_income: null,
 		  estimated_credit_score: null,
-		  err_investment_amount: 'test',
+		  err_general:0,
+		  err_investment_amount: '',
 		  err_investment_type:'',
 		  err_total_net_worth:'',
 		  err_estimated_yearly_income:'',
@@ -67,6 +68,10 @@ class PreApprovalForm extends React.Component {
 	  render() {
 	  	return(
 			<form onSubmit={this.handleSubmit} class="col-lg-8 offset-lg-3 ">
+				{this.state.err_general > 0 ? (
+					<div class="alert alert-danger" role="alert">Please correct errors below</div>
+					): null }
+					
 				<div class="form-group row">
 					<label class="col-sm-6 col-form-label required_label" for="investmentAmount">Investment Amount </label>
 					<div class="col-sm-9">
