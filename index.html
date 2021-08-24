@@ -72,7 +72,7 @@ class PreApprovalForm extends React.Component {
 	  }
 	  
 	  validateSubmit= (event) => {	
-		event.preventDefault();
+		
 		this.state.err_general=0;
 		
 		//Create regex for alphanumeric tests
@@ -117,19 +117,23 @@ class PreApprovalForm extends React.Component {
 			this.state.err_general=1;
 			this.setState({["err_estimated_credit_score"]:"This field can only contain numbers"});
 		}else{
-			if(this.state.estimated_credit_score<600 || this.state.estimated_credit_score>800){
+			if(this.state.estimated_credit_score<300 || this.state.estimated_credit_score>850){
 				this.state.err_general=1;
-				this.setState({["err_estimated_credit_score"]:"Enter a valid credit score below 800"});
+				this.setState({["err_estimated_credit_score"]:"Enter a valid credit score between 300 and 850"});
 			}else{
 				this.setState({["err_estimated_credit_score"]:""});
 			}
+		}
+		
+		if(this.state.err_general>0){
+			event.preventDefault();
 		}
 		
 		
 	  }
 	  render() {
 	  	return(
-			<form onSubmit={this.validateSubmit} class="col-lg-8 offset-lg-3 ">
+			<form onSubmit={this.validateSubmit} class="col-lg-8 offset-lg-3 " action="views/results.html" method="POST">
 				{this.state.err_general > 0 ? (
 					<div class="alert alert-danger" role="alert">Please correct the errors below</div>
 					): null }
