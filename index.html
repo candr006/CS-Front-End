@@ -48,6 +48,8 @@
 		</table>
 	</div><!--src="js/index.js" -->
 	<script type="text/babel"> 
+	
+	
 class PreApprovalForm extends React.Component {
 	constructor(props) {
 		super(props);
@@ -65,6 +67,31 @@ class PreApprovalForm extends React.Component {
 		  err_estimated_credit_score:''
 		};
 	  }
+	  
+	  mock_fetch(url,params){
+		
+		
+		return $response;
+	  }
+	  
+	  
+	  investmentApprovalAPI(data) {
+	   
+	   //mock_fetch simulates a fetch()
+		return mock_fetch('api/mock_url', {
+			method: 'POST',
+			mode: 'CORS',
+			body: JSON.stringify(data),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+			}).then(res => {
+				return res;
+				console.log(res);
+			}).catch(err => err);
+		}
+	  
+	  
 	  handleChange= (event) =>{
 		let ename = event.target.name;
 		let evalue = event.target.value;
@@ -127,13 +154,16 @@ class PreApprovalForm extends React.Component {
 		
 		if(this.state.err_general>0){
 			event.preventDefault();
+		}else{
+			investmentApprovalAPI(this.state);
+		
 		}
 		
 		
 	  }
 	  render() {
 	  	return(
-			<form onSubmit={this.validateSubmit} class="col-lg-8 offset-lg-3 " action="views/results.html" method="POST">
+			<form onSubmit={this.validateSubmit} class="col-lg-8 offset-lg-3 ">
 				{this.state.err_general > 0 ? (
 					<div class="alert alert-danger" role="alert">Please correct the errors below</div>
 					): null }
