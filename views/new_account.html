@@ -85,31 +85,29 @@ class NewAccountForm extends React.Component {
 		var atleast1specialchar=/[~!@#$%^&*]+/;
 		
 		
-		if(!(this.state.password1.length>7)){
+
+		var pwd_len=this.state.password1.length;
+		console.log("Password length: "+pwd_len);
+		if(!(pwd_len>7)){
 			this.state.err_general=1;
 			this.setState({["err_password1"]:"Your password must be at least 8 characters long"});
+			console.log("Err Password1: "+this.state.err_password1);
 		}else{
 			if(!(atleast1num.test(this.state.password1)) && !(atleast1specialchar.test(this.state.password1))){
 				this.state.err_general=1;
 				this.setState({["err_password1"]:"Your password must contain at least 1 number OR special character: ~!@#$%^&*"});
+			}else if (!(this.state.password1==this.state.password2)){
+				this.state.err_general=1;
+				this.setState({["err_password2"]:"Password fields must match"});
+				this.setState({["err_password1"]:"Password fields must match"});
 			}else{
 				this.setState({["err_password1"]:""});
+				this.setState({["err_password2"]:""});
 			}
 		}
-		
-		
-		if(!(this.state.password1==this.state.password2)){
-			this.state.err_general=1;
-			this.setState({["err_password2"]:"Password fields must match"});
-			this.setState({["err_password1"]:"Password fields must match"});
-		}else{
-			this.setState({["err_password1"]:""});
-			this.setState({["err_password2"]:""});
-		}
 
+	}
 		
-		
-	  }
 	  render() {
 	  	return(
 			<form onSubmit={this.validateSubmit} class="col-lg-8 offset-lg-3 ">
