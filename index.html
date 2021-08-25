@@ -76,20 +76,22 @@ class PreApprovalForm extends React.Component {
 		var status='A';
 		 return new Promise(function(resolve,reject){
 		    setTimeout(function(){
+            alert('Prior to resolve');
 		      resolve({'status' : status});
-		    },2000)
-		  })
+		    },20)
+		  });
+        
+        
 	  }
 	  
 	  
 	  investmentApprovalAPI(data) {
-	   
+	   alert("Before API Call");
 	   //mock_fetch simulates a fetch()
 		return this.mock_fetch('api/mock_url', data)
-			.then(res => {
-				return res;
-				alert("RESULT: "+res);
-			}).catch(err => err);
+        .then(function (response) {
+            console.log(response.status);
+            });
 		}
 	  
 	  
@@ -100,7 +102,7 @@ class PreApprovalForm extends React.Component {
 	  }
 	  
 	  validateSubmit= (event) => {	
-		
+		event.preventDefault();
 		this.state.err_general=0;
 		
 		//Create regex for alphanumeric tests
@@ -153,11 +155,8 @@ class PreApprovalForm extends React.Component {
 			}
 		}
 		
-		if(this.state.err_general>0){
-			event.preventDefault();
-		}else{
-			this.investmentApprovalAPI(this.state);
-		
+		if(this.state.err_general<1){
+        this.investmentApprovalAPI(this.state);
 		}
 		
 		
