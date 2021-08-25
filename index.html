@@ -69,25 +69,26 @@ class PreApprovalForm extends React.Component {
 	  }
 	  
 	  mock_fetch(url,params){
-		
-		
-		return $response;
+	  	var myBlob = new Blob();
+
+
+
+		var status='A';
+		 return new Promise(function(resolve,reject){
+		    setTimeout(function(){
+		      resolve({'status' : status});
+		    },2000)
+		  })
 	  }
 	  
 	  
 	  investmentApprovalAPI(data) {
 	   
 	   //mock_fetch simulates a fetch()
-		return mock_fetch('api/mock_url', {
-			method: 'POST',
-			mode: 'CORS',
-			body: JSON.stringify(data),
-			headers: {
-				'Content-Type': 'application/json'
-			}
-			}).then(res => {
+		return this.mock_fetch('api/mock_url', data)
+			.then(res => {
 				return res;
-				console.log(res);
+				alert("RESULT: "+res);
 			}).catch(err => err);
 		}
 	  
@@ -155,7 +156,7 @@ class PreApprovalForm extends React.Component {
 		if(this.state.err_general>0){
 			event.preventDefault();
 		}else{
-			investmentApprovalAPI(this.state);
+			this.investmentApprovalAPI(this.state);
 		
 		}
 		
