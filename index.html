@@ -68,15 +68,16 @@ class PreApprovalForm extends React.Component {
 		};
 	  }
 	  
+     
+   //This function will return A when approved and D when denied
 	  mock_fetch(url,params){
 	  	var myBlob = new Blob();
 
 
 
-		var status='A';
+		  var status='A';
 		 return new Promise(function(resolve,reject){
 		    setTimeout(function(){
-            alert('Prior to resolve');
 		      resolve({'status' : status});
 		    },20)
 		  });
@@ -86,12 +87,10 @@ class PreApprovalForm extends React.Component {
 	  
 	  
 	  investmentApprovalAPI(data) {
-	   alert("Before API Call");
-	   //mock_fetch simulates a fetch()
-		return this.mock_fetch('api/mock_url', data)
-        .then(function (response) {
-            console.log(response.status);
-            });
+  	   //mock_fetch simulates a fetch()
+  		return this.mock_fetch('api/mock_url', data)
+          .then(function (response) {
+              });
 		}
 	  
 	  
