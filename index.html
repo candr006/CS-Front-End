@@ -69,32 +69,51 @@ class PreApprovalForm extends React.Component {
 	  }
 	  
      
-   //This function will return 'A' when approved and 'D' when disqualified
+   //This function will return 200 when approved and 'D' when disqualified
 	  mock_fetch(url,params){
-	  	var status='A';
+	  	var status=200;
+	  	var fifth_of_yearly_income=(params.estimated_yearly_income/5);
+	  	var three_per_net_worth=(params.total_net_worth*.03);
+	  	var message='Approved';
+
+	  	if(params.investment_amount>9000000){
+	  		//bad request
+	  		status=400;
+	  		message='Bad Request';
+
+	  	}
 
 	  	//if the investment amount is greater than 1/5 of the yearly income, disqualify
-	  	var fifth_of_yearly_income=(params.estimated_yearly_income/5);
-	  	if(params.investment_amount>fifth_of_yearly_income){
-	  		status='D';
+	  	else if(params.investment_amount>fifth_of_yearly_income){
+	  		//forbidden status
+	  		status=403;
+	  		message='Disqualified';
 	  	}
 
 	  	//if the estimated credit score is less than 600, disqualify
-	  	if(params.estimated_credit_score<600){
-	  		status='D';
+	  	else if(params.estimated_credit_score<600){
+	  		//forbidden status
+	  		status=403;
+	  		message='Disqualified';
 	  	}
 
 	  	//if investment amount is more than 3% net worth, disqualify
-	  	var three_per_net_worth=(params.total_net_worth*.03);
-	  	if(params.investment_amount > three_per_net_worth){
-	  		status='D';
+	  	else if(params.investment_amount > three_per_net_worth){
+	  		//forbidden status
+	  		status=403;
+	  		message='Disqualified';
 	  	}
+
 
 
 		 return new Promise(function(resolve,reject){
 		    setTimeout(function(){
-		      resolve({'status' : status});
-		    },200)
+			    if (status==200){
+			      resolve({'status' : status});
+			    }else{
+			      reject({'status' : status});
+				}
+		    },20)
 		  });
         
         
@@ -107,9 +126,13 @@ class PreApprovalForm extends React.Component {
           .then(function (response) {
           		console.log(response.status);
           		//if approved, send user to new account page
-
+          		if(response.status==200){
+          			//this.props.history.push('views/new_account.html');
+          		}
           		//if disqualified, send user to disqualification page
-
+          		else{
+					//this.props.history.push('views/results.html');
+          		}
               });
 		}
 	  
