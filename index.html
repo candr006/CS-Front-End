@@ -71,48 +71,45 @@ class PreApprovalForm extends React.Component {
      
    //This function will return 200 when approved and 'D' when disqualified
 	  mock_fetch(url,params){
-	  	var status=200;
-	  	var fifth_of_yearly_income=(params.estimated_yearly_income/5);
-	  	var three_per_net_worth=(params.total_net_worth*.03);
-	  	var message='Approved';
-
-	  	if(params.investment_amount>9000000){
-	  		//bad request
-	  		status=400;
-	  		message='Bad Request';
-
-	  	}
-
-	  	//if the investment amount is greater than 1/5 of the yearly income, disqualify
-	  	else if(params.investment_amount>fifth_of_yearly_income){
-	  		//forbidden status
-	  		status=403;
-	  		message='Disqualified';
-	  	}
-
-	  	//if the estimated credit score is less than 600, disqualify
-	  	else if(params.estimated_credit_score<600){
-	  		//forbidden status
-	  		status=403;
-	  		message='Disqualified';
-	  	}
-
-	  	//if investment amount is more than 3% net worth, disqualify
-	  	else if(params.investment_amount > three_per_net_worth){
-	  		//forbidden status
-	  		status=403;
-	  		message='Disqualified';
-	  	}
-
-
 
 		 return new Promise(function(resolve,reject){
 		    setTimeout(function(){
-			    if (status==200){
-			      resolve({'status' : status});
-			    }else{
-			      reject({'status' : status});
-				}
+
+		  	var status=200;
+		  	var fifth_of_yearly_income=(params.estimated_yearly_income/5);
+		  	var three_per_net_worth=(params.total_net_worth*.03);
+		  	var message='Approved';
+
+		  	if(params.investment_amount>9000000){
+		  		//bad request
+		  		status=400;
+		  		message='Bad Request';
+
+		  	}
+
+		  	//if the investment amount is greater than 1/5 of the yearly income, disqualify
+		  	else if(params.investment_amount>fifth_of_yearly_income){
+		  		//forbidden status
+		  		status=403;
+		  		message='Disqualified';
+		  	}
+
+		  	//if the estimated credit score is less than 600, disqualify
+		  	else if(params.estimated_credit_score<600){
+		  		//forbidden status
+		  		status=403;
+		  		message='Disqualified';
+		  	}
+
+		  	//if investment amount is more than 3% net worth, disqualify
+		  	else if(params.investment_amount > three_per_net_worth){
+		  		//forbidden status
+		  		status=403;
+		  		message='Disqualified';
+		  	}
+
+		  
+		  	resolve({'status' : status});
 		    },20)
 		  });
         
@@ -124,7 +121,7 @@ class PreApprovalForm extends React.Component {
   	   //mock_fetch simulates a fetch()
   		return this.mock_fetch('api/mock_url', data)
           .then(function (response) {
-          		console.log(response.status);
+          		console.log("Response: "+response.status);
           		//if approved, send user to new account page
           		if(response.status==200){
           			//this.props.history.push('views/new_account.html');
