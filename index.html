@@ -69,17 +69,32 @@ class PreApprovalForm extends React.Component {
 	  }
 	  
      
-   //This function will return A when approved and D when denied
+   //This function will return 'A' when approved and 'D' when disqualified
 	  mock_fetch(url,params){
-	  	var myBlob = new Blob();
+	  	var status='A';
+
+	  	//if the investment amount is greater than 1/5 of the yearly income, disqualify
+	  	var fifth_of_yearly_income=(params.estimated_yearly_income/5);
+	  	if(params.investment_amount>fifth_of_yearly_income){
+	  		status='D';
+	  	}
+
+	  	//if the estimated credit score is less than 600, disqualify
+	  	if(params.estimated_credit_score<600){
+	  		status='D';
+	  	}
+
+	  	//if investment amount is more than 3% net worth, disqualify
+	  	var three_per_net_worth=(params.total_net_worth*.03);
+	  	if(params.investment_amount > three_per_net_worth){
+	  		status='D';
+	  	}
 
 
-
-		  var status='A';
 		 return new Promise(function(resolve,reject){
 		    setTimeout(function(){
 		      resolve({'status' : status});
-		    },20)
+		    },200)
 		  });
         
         
@@ -90,10 +105,15 @@ class PreApprovalForm extends React.Component {
   	   //mock_fetch simulates a fetch()
   		return this.mock_fetch('api/mock_url', data)
           .then(function (response) {
+          		console.log(response.status);
+          		//if approved, send user to new account page
+
+          		//if disqualified, send user to disqualification page
+
               });
 		}
 	  
-	  
+	  //update state of each prop as it is changed
 	  handleChange= (event) =>{
 		let ename = event.target.name;
 		let evalue = event.target.value;
