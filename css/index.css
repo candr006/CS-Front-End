@@ -1,5 +1,5 @@
 body {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, 0.75)),url("../images/cash_bg.jpg");
+	background-image: linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, 0.75)),url("../images/cityscape_bg_medium.jpg");
 	transform: skewY(-11deg);
 	height: 100%;
 	width: 100%;
