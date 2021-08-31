@@ -1,7 +1,5 @@
 'use strict';
 
-//const e = React.createElement;
-
 class PreApprovalForm extends React.Component {
 	constructor(props) {
 		super(props);
@@ -19,6 +17,79 @@ class PreApprovalForm extends React.Component {
 		  err_estimated_credit_score:''
 		};
 	  }
+	  
+     
+   //This function will return 200 when approved and 'D' when disqualified
+	  mock_fetch(url,params){
+
+		 return new Promise(function(resolve,reject){
+		    setTimeout(function(){
+
+		  	var status=200;
+		  	var fifth_of_yearly_income=(params.estimated_yearly_income/5);
+		  	var three_per_net_worth=(params.total_net_worth*.03);
+		  	var message='Approved';
+
+		  	if(params.investment_amount>9000000){
+		  		//bad request
+		  		status=400;
+		  		message='Bad Request';
+
+		  	}
+
+		  	//if the investment amount is greater than 1/5 of the yearly income, disqualify
+		  	else if(params.investment_amount>fifth_of_yearly_income){
+		  		//forbidden status
+		  		status=403;
+		  		message='Disqualified';
+		  	}
+
+		  	//if the estimated credit score is less than 600, disqualify
+		  	else if(params.estimated_credit_score<600){
+		  		//forbidden status
+		  		status=403;
+		  		message='Disqualified';
+		  	}
+
+		  	//if investment amount is more than 3% net worth, disqualify
+		  	else if(params.investment_amount > three_per_net_worth){
+		  		//forbidden status
+		  		status=403;
+		  		message='Disqualified';
+		  	}
+
+		  
+		  	resolve({'status' : status});
+		    },20)
+		  });
+        
+        
+	  }
+	  
+	  
+	  investmentApprovalAPI(data) {
+  	   //mock_fetch simulates a fetch()
+  		return this.mock_fetch('api/mock_url', data)
+          .then(function (response) {
+          		console.log("Response: "+response.status);
+          		//if approved, send user to new account page
+          		if(response.status==200){
+          			window.location.replace('views/new_account.html');
+          		}
+				else if(response.status==400){
+					alert("Error 400: Bad Request");
+				}
+          		//if disqualified, send user to disqualification page
+          		else{
+					window.location.replace('views/results.html');
+          		}
+              });
+		}
+		
+		
+
+	  
+	  //update state of each prop as it is changed
 	  handleChange= (event) =>{
 		let ename = event.target.name;
 		let evalue = event.target.value;
@@ -71,12 +142,16 @@ class PreApprovalForm extends React.Component {
 			this.state.err_general=1;
 			this.setState({["err_estimated_credit_score"]:"This field can only contain numbers"});
 		}else{
-			if(this.state.estimated_credit_score<600 || this.state.estimated_credit_score>800){
+			if(this.state.estimated_credit_score<300 || this.state.estimated_credit_score>850){
 				this.state.err_general=1;
-				this.setState({["err_estimated_credit_score"]:"Enter a valid credit score below 800"});
+				this.setState({["err_estimated_credit_score"]:"Enter a valid credit score between 300 and 850"});
 			}else{
 				this.setState({["err_estimated_credit_score"]:""});
 			}
+		}
+		
+		if(this.state.err_general<1){
+			this.investmentApprovalAPI(this.state);		
 		}
 		
 		
